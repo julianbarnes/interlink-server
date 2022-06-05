@@ -1,8 +1,7 @@
-
 import { Event } from '../models/event.model'
 import EventDetails from '../interfaces/event-details';
 import DatabaseManager from '../database-manager'
-import AwsManager from '../aws';
+import AwsManager from './aws-manager';
 import ManagedUpload from '../interfaces/managed-upload';
 
 const filename = "events-manager.ts";

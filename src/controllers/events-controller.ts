@@ -1,5 +1,5 @@
 import EventsManager from '../managers/events-manager';
-import AwsManager from '../aws';
+import AwsManager from '../managers/aws-manager';
 import EventDetails from '../interfaces/event-details'
 let filename = 'events.controller.ts';
 

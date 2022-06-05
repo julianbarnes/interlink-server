@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 import DatabaseManager from './database-manager'
-import AwsManager from './aws'
+import AwsManager from './managers/aws-manager'
 import { eventsRouter } from './routes/events-route'
 
 require('dotenv').config();
@@ -14,8 +14,8 @@ app.use(cors());
 
 //NOSQL Database
 DatabaseManager.start();
+
 //Picture Uploads
-AwsManager.start();
 
 app.use('/events', eventsRouter);
 // app.use('/users', usersRouter);
