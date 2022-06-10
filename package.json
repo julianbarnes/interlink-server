@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo test",
     "start": "ts-node src/server.ts",
-    "install": "npm i"
   },
   "keywords": [],
   "author": "",
