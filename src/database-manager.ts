@@ -16,7 +16,7 @@ export default class DatabaseManager {
     public static start() {
         //Connect to MongoDB
         const uri = process.env.ATLAS_URI;
-        mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+        mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, dbName:'test' }
         );
         const connection = mongoose.connection;
         connection.once('open', () => {
