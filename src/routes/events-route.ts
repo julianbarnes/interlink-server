@@ -17,7 +17,7 @@ router.route('/active').get(EventsController.getActiveEvents);
 /**
  * @description uploads a picture
  */
-//router.route('/add').post(EventsController.addEvent);
+router.route('/add').post(EventsController.addEvent);
 
 
 export const eventsRouter = router;
