@@ -61,6 +61,19 @@ export default class EventsController {
         eventDetails.description = req.description;
         eventDetails.picture = req.picture;
         
-        EventsManager.addEvent(eventDetails);
+        EventsManager.addEvent(eventDetails)
+        .then((results) => {
+            res.json({
+                status: 200,
+                data: results
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                data: err.message
+            });
+            throw Error(`Error: ${filename} ${err}`)
+        });;
     }
 }

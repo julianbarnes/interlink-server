@@ -7,12 +7,14 @@ import EventsController from '../controllers/events-controller'
 /**
  * @description gets all events 
  */
-router.route('/all').get(EventsController.getAllEvents);
+router.get('/all', (req, res, next) => {
+    return EventsController.getAllEvents(req, res)
+});
 
 /**
  * @description gets active events 
  */
-router.route('/active').get(EventsController.getActiveEvents);
+router.get('/active', EventsController.getActiveEvents);
 
 /**
  * @description uploads a picture

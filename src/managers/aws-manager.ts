@@ -28,26 +28,27 @@ const AWS = require('aws-sdk');
         };
           //results contains the progress of the upload
         //return Aws.s3.upload(params);
-        return AWS.s3.upload(params, function(err, results) {
-            if (err) {
-                console.log(AWS.filename + " " + err.message)
-            }
+        // return AWS.s3.upload(params, function(err, results) {
+        //     if (err) {
+        //         console.log(AWS.filename + " " + err.message)
+        //     }
         
-            console.log(`File uploaded succesfully at ${results.Location}`)
-            return results;
-        });
-        // return new Promise<ManagedUpload>(()=>{});
-        // const upload = multer({
-        //     storage: multerS3({
-        //         s3: this.s3,
-        //         bucket: 'interlink-app',
-        //         metadata: function (req, file, cb) {
-        //             cb(null, {fieldName: 'TESTING_META_DATA!'});
-        //         },
-        //         key: function (req, file, cb) {
-        //             cb(null, Date.now().toString())
-        //         }
-        //     })
-        // })
+        //     console.log(`File uploaded succesfully at ${results.Location}`)
+        //     return results;
+        // });
+
+        const upload = await multer({
+            storage: multerS3({
+                s3: this.s3,
+                bucket: 'interlink-app',
+                metadata: function (req, file, cb) {
+                    cb(null, {fieldName: 'TESTING_META_DATA!'});
+                },
+                key: function (req, file, cb) {
+                    cb(null, Date.now().toString())
+                }
+            })
+        })
+        return upload;
     }
  }

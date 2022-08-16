@@ -28,16 +28,21 @@ export default class EventsManager {
      * @description add an event to the database so that it can be retrieved later
      */
     public static async addEvent(eventDetails: EventDetails) {
-      let managedUpload;
-      if(eventDetails.picture) {
-        managedUpload = await AwsManager.upload(eventDetails.title, eventDetails.picture) as ManagedUpload;
+      try {
+        let managedUpload;
+        if(eventDetails.picture) {
+          managedUpload = await AwsManager.upload(eventDetails.title, eventDetails.picture) as ManagedUpload;
+        }
+        let event = new Event({
+          title: eventDetails.title,
+          description: eventDetails.description,
+          date: eventDetails.date,
+          picture: managedUpload ? managedUpload.Location : ""
+        });
+        await event.save().then(results => console.log(`${filename} Successfully added event`));
+      } catch (error: any) {
+        throw error;
       }
-      let event = new Event({
-        title: eventDetails.title,
-        description: eventDetails.description,
-        date: eventDetails.date,
-        picture: managedUpload.Location
-      });
-      await event.save().then(results => console.log(`${filename} Successfully added event`));
+      
     }
 }
