@@ -56,11 +56,10 @@ export default class EventsController {
     public static async addEvent(req, res) {
         //Add types for inputs from req
         let eventDetails: EventDetails = {} as EventDetails;
-        eventDetails.title = req.title;
-        eventDetails.date = req.date;
-        eventDetails.description = req.description;
-        eventDetails.picture = req.picture;
-        
+        eventDetails.title = req.body.title;
+        eventDetails.date = req.body.date;
+        eventDetails.description = req.body.description;
+        eventDetails.picture = req.body.picture;
         EventsManager.addEvent(eventDetails)
         .then((results) => {
             res.json({
