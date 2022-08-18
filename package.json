@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo test",
-    "start": "ts-node src/server.ts"
+    "start": "nodemon src/server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Julian",
   "license": "ISC",
   "dependencies": {
     "@types/typescript": "^2.0.0",
