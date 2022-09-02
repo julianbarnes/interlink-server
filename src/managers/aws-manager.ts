@@ -25,7 +25,7 @@ const { Readable } = require('stream');
         let date = new Date();
         const params = {
             Bucket: 'interlink-app',
-            Key: `${title}.jpg`,
+            Key: `${title}`,
             Body: Readable.from(data)
 
         };
