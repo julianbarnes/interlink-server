@@ -1,6 +1,8 @@
 import EventsManager from '../managers/events-manager';
 import AwsManager from '../managers/aws-manager';
 import EventDetails from '../interfaces/event-details'
+import { ManagedBlockchain } from 'aws-sdk';
+import { ManagedUpload } from 'aws-sdk/clients/s3';
 let filename = 'events.controller.ts';
 
 export default class EventsController {
@@ -74,5 +76,21 @@ export default class EventsController {
             });
             throw Error(`Error: ${filename} ${err}`)
         });;
+    }
+
+    public static async addEventPicture(req, res) {
+
+        EventsManager.addEventPicture(req.file).then((response: any) => {
+            res.send({
+                status: 200,
+                picture: response ? response.Location : null
+            })
+        }, (error: any) => {
+            res.send({
+                status: error.message? error.message.status : error.message,
+                message: error.message,
+                body: req.body
+            })
+        })
     }
 }
