@@ -29,17 +29,28 @@ export default class EventsManager {
      */
     public static async addEvent(eventDetails: EventDetails) {
       try {
-        let managedUpload;
-        if(eventDetails.picture) {
-          managedUpload = await AwsManager.upload(eventDetails.title, eventDetails.picture) as ManagedUpload;
-        }
         let event = new Event({
           title: eventDetails.title,
           description: eventDetails.description,
-          date: eventDetails.date,
-          picture: managedUpload ? managedUpload.Location : ""
+          date: new Date(),//eventDetails.date,
+          picture: eventDetails.picture
         });
         await event.save().then(results => console.log(`${filename} Successfully added event`));
+      } catch (error: any) {
+        throw error;
+      }
+      
+    }
+
+    /**
+     * @description add an event to the database so that it can be retrieved later
+     */
+     public static async addEventPicture(formData: any) {
+      try {
+        if(formData) {
+          let managedUpload = await AwsManager.upload(formData.originalname, formData.buffer)
+          return managedUpload;
+        }
       } catch (error: any) {
         throw error;
       }
