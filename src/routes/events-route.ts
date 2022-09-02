@@ -1,6 +1,9 @@
 import * as fs from 'fs'
 import * as express from 'express';
 import * as path from 'path'
+const multer = require('multer')
+const upload = multer()
+
 const router = express.Router();
 import EventsController from '../controllers/events-controller'
 
@@ -16,10 +19,11 @@ router.get('/all', (req, res, next) => {
  */
 router.get('/active', EventsController.getActiveEvents);
 
+router.post('/add-picture', upload.single('picture'), EventsController.addEventPicture)
 /**
  * @description uploads a picture
  */
-router.route('/add').post(EventsController.addEvent);
+router.post('/add', EventsController.addEvent);
 
 
 export const eventsRouter = router;
