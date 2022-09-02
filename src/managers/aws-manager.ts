@@ -32,17 +32,9 @@ const { Readable } = require('stream');
 
 
 
-        try {
-            fs.writeFileSync(`uploads/${title}`, data)
-        }
-        catch(err)  {
-            if (err) {
-                console.error(err);
-            }
-        }
-        finally {
-            return this.s3.upload(params).promise();
-        }
+        
+        return this.s3.upload(params).promise();
+        
 
     }
  }
