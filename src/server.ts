@@ -17,7 +17,7 @@ app.use(cors());
 DatabaseManager.start();
 
 //Picture Uploads
-
+app.options('/events', cors()) // enable pre-flight
 app.use('/events', eventsRouter);
 // app.use('/users', usersRouter);
 
