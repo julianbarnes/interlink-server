@@ -3,6 +3,7 @@ import EventDetails from '../interfaces/event-details';
 import DatabaseManager from '../database-manager'
 import AwsManager from './aws-manager';
 import ManagedUpload from '../interfaces/managed-upload';
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 const filename = "events-manager.ts";
 /**
@@ -56,4 +57,18 @@ export default class EventsManager {
       }
       
     }
+
+    /**
+     * @description sets an event to approved so that it shows up on the browse screen
+     */
+    public static async approveEvent(id: string, approved: boolean) {
+      let update = {approved: approved}
+      let event = await Event.findOne();
+      console.log(ObjectId.isValid(id))
+      console.log(ObjectId.isValid(new ObjectId(id)))
+      event = await Event.findByIdAndUpdate(id, update, {new: true})
+      .catch(err => { throw Error(`Error: ${filename} ${err}`)});
+      return event;
+    }
+
 }

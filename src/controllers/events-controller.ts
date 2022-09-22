@@ -93,4 +93,19 @@ export default class EventsController {
             })
         })
     }
+
+    public static async approveEvent(req,res) {
+        EventsManager.approveEvent(req.body.id, req.body.approved).then((response: any) => {
+            res.send({
+                status: 200,
+                body: response
+            })
+        }, (error: any) => {
+            res.send({
+                status: error.message? error.message.status : error.message,
+                message: error.message,
+                body: req.body
+            })
+        })
+    }
 }

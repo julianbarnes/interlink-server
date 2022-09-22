@@ -20,10 +20,15 @@ router.get('/all', (req, res, next) => {
 router.get('/active', EventsController.getActiveEvents);
 
 router.post('/add-picture', upload.single('picture'), EventsController.addEventPicture)
+
 /**
  * @description uploads a picture
  */
 router.post('/add', EventsController.addEvent);
 
+/**
+ * @description approves an event
+ */
+router.put('/approve', EventsController.approveEvent)
 
 export const eventsRouter = router;
