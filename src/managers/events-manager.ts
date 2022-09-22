@@ -33,7 +33,7 @@ export default class EventsManager {
         let event = new Event({
           title: eventDetails.title,
           description: eventDetails.description,
-          date: new Date(),//eventDetails.date,
+          date: new Date(eventDetails.date),
           picture: eventDetails.picture
         });
         await event.save().then(results => console.log(`${filename} Successfully added event`));
