@@ -59,7 +59,8 @@ export default class EventsController {
         //Add types for inputs from req
         let eventDetails: EventDetails = {} as EventDetails;
         eventDetails.title = req.body.title;
-        eventDetails.date = req.body.date;
+        eventDetails.startDate = req.body.startDate;
+        eventDetails.endDate = req.body.endDate;
         eventDetails.description = req.body.description;
         eventDetails.picture = req.body.picture;
         EventsManager.addEvent(eventDetails)
