@@ -3,6 +3,7 @@ const cors = require('cors')
 import DatabaseManager from './database-manager'
 import AwsManager from './managers/aws-manager'
 import { eventsRouter } from './routes/events-route'
+import { orgRouter } from './routes/org-route';
 
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ DatabaseManager.start();
 //Picture Uploads
 app.options('/events', cors()) // enable pre-flight
 app.use('/events', eventsRouter);
+app.use('/org', orgRouter)
 // app.use('/users', usersRouter);
 
 app.listen(port, () => {
