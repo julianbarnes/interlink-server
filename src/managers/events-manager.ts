@@ -28,16 +28,9 @@ export default class EventsManager {
     /**
      * @description add an event to the database so that it can be retrieved later
      */
-    public static async addEvent(eventDetails: EventDetails) {
+    public static async addEvent(eventDetails: object) {
       try {
-        let event = new Event({
-          title: eventDetails.title,
-          description: eventDetails.description,
-          startDate: new Date(eventDetails.startDate),
-          endDate: new Date(eventDetails.endDate),
-          location: eventDetails.location,
-          picture: eventDetails.picture
-        });
+        let event = new Event(eventDetails);
         await event.save().then(results => console.log(`${filename} Successfully added event`));
       } catch (error: any) {
         throw error;
