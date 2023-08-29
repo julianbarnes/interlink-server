@@ -24,7 +24,7 @@ export default class EventsController {
                 status: 500,
                 data: err.message
             });
-            throw Error(`Error: ${filename} ${err}`)
+            console.error(`Error: ${filename} ${err}`)
         });
     }
 
@@ -46,7 +46,7 @@ export default class EventsController {
                 status: 500,
                 data: err.message
             });
-            throw Error(`Error: ${filename} ${err}`)
+            console.error(`Error: ${filename} ${err}`)
         });
     }
 
@@ -75,7 +75,7 @@ export default class EventsController {
                 status: 500,
                 data: err.message
             });
-            throw Error(`Error: ${filename} ${err}`)
+            console.error(`Error: ${filename} ${err}`)
         });;
     }
 
